@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이트 뉴스 블로그 생성기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📰 네이트 뉴스 블로그 생성기</h1>
+            <p class="subtitle">네이트 랭킹뉴스를 자동으로 크롤링하고 블로그 글을 생성합니다</p>
+        </header>
+
+        <main>
+            <!-- 설정 섹션 -->
+            <section class="settings-section">
+                <h2>⚙️ 설정</h2>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="newsCount">뉴스 개수:</label>
+                        <select id="newsCount">
+                            <option value="3">3개</option>
+                            <option value="5" selected>5개</option>
+                            <option value="7">7개</option>
+                            <option value="10">10개</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="generateMode">생성 모드:</label>
+                        <select id="generateMode">
+                            <option value="template" selected>템플릿 모드</option>
+                            <option value="ai">AI 모드 (OpenAI API 필요)</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="writeStyle">글 스타일:</label>
+                        <select id="writeStyle">
+                            <option value="informative" selected>정보 전달형</option>
+                            <option value="casual">친근한 대화체</option>
+                            <option value="professional">전문적인 톤</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="generateBtn" class="btn btn-primary">
+                        🚀 블로그 글 자동 생성
+                    </button>
+                    <button id="previewNewsBtn" class="btn btn-secondary">
+                        👀 뉴스 미리보기
+                    </button>
+                </div>
+            </section>
+
+            <!-- 로딩 인디케이터 -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>뉴스를 크롤링하고 블로그 글을 생성하는 중입니다...</p>
+            </div>
+
+            <!-- 에러 메시지 -->
+            <div id="errorMessage" class="error-message hidden"></div>
+
+            <!-- 뉴스 미리보기 섹션 -->
+            <section id="newsPreviewSection" class="news-preview-section hidden">
+                <h2>📋 크롤링된 뉴스 목록</h2>
+                <div id="newsList" class="news-list"></div>
+            </section>
+
+            <!-- 결과 섹션 -->
+            <section id="resultSection" class="result-section hidden">
+                <div class="result-header">
+                    <h2>✨ 생성된 블로그 글</h2>
+                    <div class="result-actions">
+                        <button id="copyMarkdownBtn" class="btn btn-small">
+                            📋 마크다운 복사
+                        </button>
+                        <button id="downloadBtn" class="btn btn-small">
+                            💾 다운로드
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="preview">미리보기</button>
+                    <button class="tab-btn" data-tab="markdown">마크다운</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="previewTab" class="tab-pane active">
+                        <div id="blogPreview" class="blog-preview"></div>
+                    </div>
+                    <div id="markdownTab" class="tab-pane">
+                        <textarea id="blogMarkdown" class="markdown-editor" readonly></textarea>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ using Flask & BeautifulSoup</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
