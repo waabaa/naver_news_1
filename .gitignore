@@ -68,6 +68,7 @@ temp/
 demo_*.html
 demo_*.md
 demo_*.json
+blog_*news.md
 nohup.out
 server.log
 http_server.log
