@@ -63,3 +63,11 @@ htmlcov/
 # Temporary files
 *.tmp
 temp/
+
+# Demo and test files
+demo_*.html
+demo_*.md
+demo_*.json
+nohup.out
+server.log
+http_server.log
